@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Кабінет - Мої бронювання</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: white; 
+      color: #000000; 
+      margin: 0;
+      padding: 0;
+    }
+   .header {
+  background: #1a3371;
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(26, 51, 113, 0.3);
+}
+
+.header .container {
+  padding: 0 !important;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 32px;
+  display: inline-block;
+  margin-left: 0;
+}
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: #000000;
+      text-align: center;
+    }
+    p.intro {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #000000; 
+      font-size: 18px;
+    }
+    .booking-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .booking-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 4px 15px rgba(26, 51, 113, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e0e0e0;
+      color: #000000; 
+    }
+    .booking-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(26, 51, 113, 0.2);
+    }
+    .booking-card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 22px;
+      color: #000000; 
+    }
+    .booking-info p {
+      margin: 6px 0;
+      font-size: 16px;
+      color: #000000; 
+    }
+    .booking-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+    }
+    .btn {
+      flex: 1;
+      padding: 12px 0;
+      font-weight: 600;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      color: white;
+    }
+    .btn-view {
+      background-color: #f1bc00; 
+    }
+    .btn-view:hover {
+      background-color: #d8a900;
+    }
+    .btn-cancel {
+      background-color: #e53935; 
+    }
+    .btn-cancel:hover {
+      background-color: #b71c1c;
+    }
+    .button-yellow {
+  display: block;
+  max-width: 300px;      
+  width: 100%;           
+  margin: 40px auto 0;
+  background-color: #f1bc00;
+  color: #081630;
+  font-size: 20px;       
+  font-weight: 700;
+  border: none;
+  padding: 18px 0;       
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(241, 188, 0, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;   
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+    .button-yellow:hover {
+      background-color: #d8a900;
+      box-shadow: 0 6px 15px rgba(216, 169, 0, 0.6);
+    }
+    .no-bookings {
+      text-align: center;
+      font-size: 18px;
+      color: #555555; 
+      margin-top: 50px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <a href="index.html">LuxuryCars</a>
+  </div>
+</header>
+
+
+<main class="container">
+  <h1>Мої бронювання</h1>
+  <p class="intro">Тут відображені всі ваші активні та минулі бронювання. Ви можете скасувати або переглянути деталі кожного замовлення.</p>
+
+  <div id="orders" class="booking-list"></div>
+
+  <button class="button-yellow" onclick="window.location.href='index.html'">Назад до головної</button>
+</main>
+
+<script>
+  const bookings = [
+    {
+      id: 1,
+      brand: 'Audi',
+      model: 'RS7',
+      startDate: '2025-06-01',
+      endDate: '2025-06-07',
+      status: 'Активне'
+    },
+    {
+      id: 2,
+      brand: 'BMW',
+      model: 'X5',
+      startDate: '2025-05-10',
+      endDate: '2025-05-15',
+      status: 'Завершене'
+    }
+  ];
+
+  function renderBookings() {
+    const container = document.getElementById('orders');
+    container.innerHTML = '';
+    if (bookings.length === 0) {
+      container.innerHTML = '<p class="no-bookings">У вас ще немає активних бронювань.</p>';
+      return;
+    }
+
+    bookings.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'booking-card';
+      card.innerHTML = `
+        <h3>${b.brand} ${b.model}</h3>
+        <div class="booking-info">
+          <p><strong>Період:</strong> ${b.startDate} – ${b.endDate}</p>
+          <p><strong>Статус:</strong> ${b.status}</p>
+        </div>
+        <div class="booking-actions">
+          <button class="btn btn-view" onclick="alert('Деталі бронювання #${b.id}')">Переглянути</button>
+          <button class="btn btn-cancel" onclick="cancelBooking(${b.id})">Скасувати</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function cancelBooking(id) {
+    alert('Бронювання ' + id + ' скасовано (приклад)');
+  }
+
+  renderBookings();
+</script>
+</body>
+</html>

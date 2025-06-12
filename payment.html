@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uk" class="home-page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оплата</title>
+  <link rel="stylesheet" href="./assets/css/home.css" />
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+  <style>
+    .privat24-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #108600;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      width: 220px;
+    }
+    .privat24-button:hover {
+      background-color: #00732a;
+      text-decoration: none;
+      color: white;
+    }
+    .privat24-icon {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body class="home-page">
+  <header>
+    <div class="container">
+      <div class="header__wrapper">
+        <div class="header__logo">
+          <a href="index.html">LuxuryCars</a>
+        </div>
+        <div class="header__wrapper-menu">
+          <input type="checkbox" id="header__menu-toggle" />
+          <label class="header__menu-cont" for="header__menu-toggle">
+            <div class="header__menu-bth"></div>
+          </label>
+          <div class="header__menu">
+            <span><a href="index.html">Головна</a></span>
+            <span><a href="car-list.html">Авто</a></span>
+            <span><a href="dashboard.html">Кабінет</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="book-block">
+    <div class="container">
+      <div class="book__wrapper">
+        <h2>Оплатіть бронювання</h2>
+        <p>Виберіть зручний спосіб оплати для завершення вашого замовлення.</p>
+        <div style="margin-top: 40px; display: flex; gap: 30px; flex-wrap: wrap;">
+
+          <!-- PayPal кнопка -->
+          <div id="paypal-button-container"></div>
+
+          <!-- Privat24 посилання з іконкою -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <a href="https://privat24.ua" target="_blank" rel="noopener noreferrer" class="privat24-button" style="width: auto; padding: 10px 20px;">
+              <img src="./assets/images/Privat24_Logo.png" alt="Privat24" style="width: 40px; height: auto; margin-bottom: 6px;" />
+              Сплатити через Privat24
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer__wrapper">
+        <div class="col-3">
+          <div>
+            <h3>Резервація</h3>
+            <div class="list-link">
+              <a href=""><span>Оренда авто</span></a>
+              <a href=""><span>Скасувати</span></a>
+              <a href=""><span>Отримати чек</span></a>
+            </div>
+          </div>
+          <div>
+            <h3>Сервіси</h3>
+            <div class="list-link">
+              <a href=""><span>Допомога</span></a>
+              <a href=""><span>Новини</span></a>
+              <a href=""><span>Блог</span></a>
+              <a href=""><span>Контакти</span></a>
+            </div>
+          </div>
+          <div>
+            <h3>Компанія</h3>
+            <div class="list-link">
+              <a href=""><span>Про нас</span></a>
+              <a href=""><span>Кар'єра</span></a>
+              <a href=""><span>Політика</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-footer">
+          <h3>LUXURYCARS</h3>
+          <div class="info">
+            <div class="social">
+              <a href="https://t.me/+380992963800">
+                <img src="./assets/images/telegram.svg" alt="Telegram" />
+              </a>
+              <a href="https://www.instagram.com/luxurycars.ua">
+                <img src="./assets/images/iconmonstr-instagram-14 1.svg" alt="Instagram" />
+              </a>
+            </div>
+            <div class="address">
+              <a href="tel:+380992963800"><span>+380992963800</span></a>
+              <a href="mailto:levchenko.milana3@gmail.com"><span>levchenko.milana3@gmail.com</span></a>
+              <a href="admin.html" style="color:white;font-size:14px;">Адмін</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '500.00'
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          window.location.href = 'success.html';
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

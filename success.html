@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk" class="home-page">
+<head>
+  <meta charset="UTF-8" />
+  <title>Оплата успішна</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <section class="success-container">
+    <div class="success-box">
+      <img src="assets/images/success-icon.svg" alt="Успіх" class="success-icon" />
+      <h1>✅ Дякуємо за оплату!</h1>
+      <p>Ваше замовлення підтверджено.</p>
+      <div class="button-group">
+        <a href="index.html" class="back-home-btn">Повернутися на головну</a>
+        <a href="dashboard.html" class="view-order-btn">Особистий кабінет</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const order = {
+      orderId: 'order_' + Date.now(),
+      amount: 1000,
+      currency: 'USD',
+      method: 'PayPal',
+      timestamp: new Date().toISOString(),
+      customer: {
+        name: 'Іван Іванов',
+        email: 'ivan@example.com'
+      }
+    };
+
+    fetch('http://localhost:3000/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('✅ Замовлення збережено:', data);
+    })
+    .catch(err => {
+      console.error('❌ Помилка збереження замовлення:', err);
+    });
+  </script>
+</body>
+</html>

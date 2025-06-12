@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Адмін-панель</title>
+ <link rel="stylesheet" href="./assets/css/index.css">
+  <script src="./js/admin.js" defer></script>
+</head>
+<body>
+<header class="header"><div class="container"><a href="index.html">LuxuryCars</a></div></header>
+<main class="container">
+  <h1>Адмін-панель</h1>
+
+  <h2>Додати авто</h2>
+  <form id="addCarForm">
+    <input name="brand" placeholder="Марка" required>
+    <input name="model" placeholder="Модель" required>
+    <input name="price" placeholder="Ціна" type="number" required>
+    <select name="fuel"><option>Petrol</option><option>Diesel</option></select>
+    <button type="submit">Додати</button>
+  </form>
+
+  <h2>Бронювання</h2>
+  <div id="adminBookings"></div>
+</main>
+</body>
+</html>

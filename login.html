@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Вхід</title>
+ <link rel="stylesheet" href="./assets/css/index.css">
+  <script src="./js/auth.js" defer></script>
+  <style>
+    .button-yellow {
+      background-color: #f1bc00;
+      color: #081630;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      padding: 15px 30px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .button-yellow:hover {
+      background-color: #d8a900;
+    }
+
+    .auth-page {
+      max-width: 500px;
+      margin: 100px auto;
+      background-color: #fff8dc;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+    }
+
+    .auth-page input {
+      display: block;
+      width: 100%;
+      padding: 12px 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .auth-page p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .auth-page a {
+      color: #21408e;
+      text-decoration: none;
+    }
+
+    .auth-page a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="container auth-page">
+    <h1>Вхід</h1>
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+      <button type="submit" class="button-yellow">Увійти</button>
+      <p>Немає акаунту? <a href="register.html">Реєстрація</a></p>
+    </form>
+  </main>
+</body>
+</html>
