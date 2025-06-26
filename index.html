@@ -301,7 +301,7 @@
   </form>
 </div>
 
-  <script>
+ <script>
   document.querySelectorAll('.form-sendEmail').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -313,8 +313,8 @@
         return;
       }
 
-       try {
-        fetch('https://carrentalapp-md6a.onrender.com', {
+      try {
+        const response = await fetch('https://carrentalapp-md6a.onrender.com/subscribe', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -336,6 +336,7 @@
     });
   });
 </script>
+
 
 <footer>
   <div class="container">
