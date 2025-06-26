@@ -301,6 +301,42 @@
   </form>
 </div>
 
+  <script>
+  document.querySelectorAll('.form-sendEmail').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[type="email"]');
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        alert('Введіть коректну електронну пошту.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert(result.message || 'Дякуємо за підписку!');
+          form.reset();
+        } else {
+          alert(result.error || result.message || 'Щось пішло не так.');
+        }
+      } catch (err) {
+        alert('Помилка мережі або сервера.');
+      }
+    });
+  });
+</script>
+
 <footer>
   <div class="container">
     <div class="footer__wrapper">
